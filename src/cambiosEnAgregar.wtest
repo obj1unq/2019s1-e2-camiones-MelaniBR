@@ -1,0 +1,54 @@
+import cosas.*
+import camion.*
+describe " Camion agregar y lista "{
+fixture {bumblebee
+		  camion.cargar(bumblebee)
+		  camion.cargar(knightRider)
+		  camion.cargar(paqueteDeLadrillos)
+		  arenaGranel.peso(15)
+		  camion.cargar(arenaGranel)
+		  camion.cargar(bateriaAntiaerea)
+		  residuosRadioactivos.peso(20)
+		  camion.cargar(residuosRadioactivos)
+		  embalajeDeSeguridad.embalar(knightRider)
+		  camion.cargar(embalajeDeSeguridad)
+}
+test "cambios en agregar : Arena Granel"{
+	
+	assert.that(arenaGranel.peso()>= 20 )
+	
+}
+test "cambios en agregar :Bumblebee"{
+	
+	assert.notThat(bumblebee.transformadoEnAuto())
+}
+test"cambios en agregar :Paquete de ladrillos"{
+	
+	assert.that(paqueteDeLadrillos.cantLadrillos() >= 12)
+}
+test"cambios en agregar :bateria Antiaerea"{
+	
+	assert.that(bateriaAntiaerea.misiles())
+}
+test "cambios en agregar Contendor Portuario" {
+	
+	contenedorPortuario.agregar(bateriaAntiaerea)
+    camion.cargar(contenedorPortuario)
+	assert.that(bateriaAntiaerea.misiles())	
+}
+test "cambios en agregar residuos radioactivos"{
+	
+	assert.that(residuosRadioactivos.peso() >= 15)
+}
+test "puede circular en ruta todos las cosas"{
+	assert.that(camion.puedeCircularEnRuta(300))
+      }
+test " lista de pesos"{
+	assert.equals([800,500,24,20,
+		300,15,500],
+		camion.pesos())
+}
+test" total bultos con todas las cosas"{
+	assert.equals(bumblebee,camion.cosaMasPesada())
+}
+}
