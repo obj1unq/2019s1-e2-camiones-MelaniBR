@@ -1,0 +1,53 @@
+import camion.*
+import cosas.*
+//Knight Rider: 
+//* Bumblebee: 
+//* Paquete de ladrillos: 
+//* Arena a granel: 
+//* Batería antiaérea : 
+//* Contenedor portuario: 
+//* Residuos radioactivos:
+//* Embalaje de seguridad: 
+
+
+
+describe "tests de camion " { 
+  fixture {
+          camion.cargar(bumblebee)
+		  
+          }
+test "Camion carga y descarga " {
+	camion.cargar(knightRider)
+	camion.descargar(knightRider)
+	assert.equals([bumblebee],camion.cosas())
+}
+test "peso Total del camion  " {
+	assert.equals(1800,camion.pesoTotal())
+}
+test "No esta excedido de peso"{
+	assert.notThat(camion.excedidoDePeso())
+}
+test "Objectos peligrosos"{
+	assert.equals([bumblebee],camion.objectosPeligrosos(1))
+} 
+test "objectos mas peligrosos que knightRider"{
+	assert.equals ([bumblebee],camion.objectosMasPeligrososQue(knightRider))
+}
+test "Camion puede circular en ruta"{
+	assert.that(camion.puedeCircularEnRuta(40))
+}
+test "Bumblebee pesa enre ..."{
+	assert.that(camion.tieneAlgoQuePesaEntre(700,1000))
+}
+test"la cosa mas pesada del camion"{
+	assert.equals (bumblebee,camion.cosaMasPesada())
+}
+test"total bultos"{
+	assert.equals (2 , camion.totalBultos())
+	}
+test "Lista de peso de cosas en camion"{
+	assert.equals([800], camion.pesos())
+}
+
+
+}
